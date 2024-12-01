@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3Toe - The Memecoin</title>
+    <title>3toe - The Memecoin</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,6 +14,7 @@
     <style>
       /* Estilos globales */
       body {
+        overflow-x: hidden;
         font-family: "Caveat", cursive;
         font-optical-sizing: auto;
         font-style: normal;
@@ -22,6 +24,7 @@
         background-color: #f9f8f4;
         color: #333;
         text-align: center;
+        width: 100%;
         background-image: url("assets/images/paperbg.svg"); /* Ajusta la ruta según tu proyecto */
         background-size: cover; /* Asegura que el SVG ocupe toda la pantalla */
         background-repeat: no-repeat; /* Evita que el fondo se repita */
@@ -100,6 +103,11 @@
       .section h2 {
         font-size: 2em;
         margin-bottom: 20px;
+      }
+
+      .section p {
+        font-size: 1.2em;
+        text-align: justify;
       }
 
       /* Roadmap */
@@ -272,7 +280,7 @@
         align-items: center;
         gap: 10px; /* Espacio entre icono y dirección */
         margin-bottom: 15px;
-        font-size: 1.2em;
+        font-size: 1em;
         color: #333;
       }
 
@@ -314,6 +322,15 @@
         margin-top: 40px;
         font-size: 0.8em;
       }
+
+      @media (max-width: 550px) {
+        .contract-box {
+          font-size: 0.7rem;
+        }
+        #donations .donation-row {
+          font-size: 1.2rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -324,13 +341,13 @@
 
     <!-- Hero Section -->
     <div id="hero" class="hero">
-      <img src="assets/images/pie2.JPG" alt="3Toe Logo" />
+      <img src="assets/images/pie2.webp" alt="3Toe Logo" />
       <div class="contract-box">
         <span id="contract-address"
           >AvToh2Mvu12DMPTd8zn4BjmERHq5AqJhuQNhjCDApump</span
         >
         <button onclick="copyToClipboard('contract-address')">
-          <img src="assets/svg/png/006-copy.png" alt="Copiar" />
+          <img src="assets/svg/png/006-copy.png" class="capng" alt="Copiar" />
         </button>
       </div>
     </div>
@@ -487,4 +504,22 @@
     <!-- Footer -->
     <footer>© 2024 3Toe. Todos los derechos reservados.</footer>
   </body>
+  <script>
+    function copyToClipboard(elementId) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        const text = element.textContent; // Obtiene el contenido de texto del elemento
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            alert("¡Texto copiado al portapapeles!");
+          })
+          .catch((err) => {
+            console.error("Error al copiar al portapapeles: ", err);
+          });
+      } else {
+        console.error(`Elemento con id "${elementId}" no encontrado.`);
+      }
+    }
+  </script>
 </html>
