@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3Toe - The Memecoin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilos globales */
+      body {
+        font-family: "Caveat", cursive;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-size: x-large;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f8f4;
+        color: #333;
+        text-align: center;
+        background-image: url("assets/images/paperbg.svg"); /* Ajusta la ruta según tu proyecto */
+        background-size: cover; /* Asegura que el SVG ocupe toda la pantalla */
+        background-repeat: no-repeat; /* Evita que el fondo se repita */
+        background-position: center; /* Centra el SVG */
+        background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+      }
+
+      /* Header */
+      header {
+        width: 100%;
+        background-color: #fff;
+        padding: 5px 5px;
+        border-bottom: 2px solid #ddd;
+        text-align: center;
+        min-height: 40px;
+      }
+
+      header .logo {
+        max-height: 60px;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+      }
+
+      .hero img {
+        width: 84%;
+        height: auto;
+      }
+
+      .contract-box {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.7rem;
+        position: absolute;
+        top: 85%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 2px solid #333;
+        border-radius: 25px;
+        max-width: 450px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .contract-box span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1.2em;
+        color: #333;
+      }
+
+      .contract-box button {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .contract-box button img {
+        width: 25px;
+        height: 25px;
+      }
+
+      /* Secciones */
+      .section {
+        margin: 60px auto;
+        padding: 0 20px;
+        max-width: 800px;
+      }
+
+      .section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      /* Roadmap */
+      ul {
+        --col-gap: 2rem;
+        --row-gap: 2rem;
+        --line-w: 0.25rem;
+        display: grid;
+        grid-template-columns: var(--line-w) 1fr;
+        grid-auto-columns: max-content;
+        column-gap: var(--col-gap);
+        list-style: none;
+        width: min(60rem, 90%);
+        margin-inline: auto;
+      }
+
+      /* line */
+      /* ul::before {
+        content: "";
+        grid-column: 1;
+        grid-row: 1 / span 20;
+        background: rgb(0, 0, 0);
+        border-radius: calc(var(--line-w) / 2);
+      } */
+
+      /* columns*/
+
+      /* row gaps */
+      ul li:not(:last-child) {
+        margin-bottom: var(--row-gap);
+      }
+
+      /* card */
+      ul li {
+        grid-column: 2;
+        --inlineP: 1.5rem;
+        margin-inline: var(--inlineP);
+        grid-row: span 2;
+        display: grid;
+        grid-template-rows: min-content min-content min-content;
+        background-color: #ffffff;
+      }
+
+      /* date */
+      ul li .date {
+        --dateH: 3rem;
+        height: var(--dateH);
+        margin-inline: calc(var(--inlineP) * -1);
+
+        text-align: center;
+        background-color: var(--accent-color);
+
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 700;
+
+        display: grid;
+        place-content: center;
+        position: relative;
+
+        border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+      }
+
+      /* date flap */
+      ul li .date::before {
+        content: "";
+        width: var(--inlineP);
+        aspect-ratio: 1;
+        background: var(--accent-color);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+        position: absolute;
+        top: 100%;
+
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+        right: 0;
+      }
+
+      /* circle */
+      ul li .date::after {
+        content: "";
+        position: absolute;
+        width: 2rem;
+        aspect-ratio: 1;
+        background-image: url("assets/images/paperbg.svg");
+        border: 0.3rem solid var(--accent-color);
+        border-radius: 50%;
+        top: 50%;
+
+        transform: translate(50%, -50%);
+        right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+      }
+
+      /* title descr */
+      ul li .title,
+      ul li .descr {
+        background: var(--bgColor);
+        position: relative;
+        padding-inline: 1.5rem;
+      }
+      ul li .title {
+        overflow: hidden;
+        padding-block-start: 1.5rem;
+        padding-block-end: 1rem;
+        font-weight: 500;
+      }
+      ul li .descr {
+        padding-block-end: 1.5rem;
+        font-weight: 300;
+      }
+
+      /* shadows */
+      ul li .title::before,
+      ul li .descr::before {
+        content: "";
+        position: absolute;
+        width: 90%;
+        height: 0.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        left: 50%;
+        border-radius: 50%;
+        filter: blur(4px);
+        transform: translate(-50%, 50%);
+      }
+      ul li .title::before {
+        bottom: calc(100% + 0.125rem);
+      }
+
+      ul li .descr::before {
+        z-index: -1;
+        bottom: 0.25rem;
+      }
+
+      @media (min-width: 40rem) {
+        ul {
+          grid-template-columns: 1fr var(--line-w) 1fr;
+        }
+        ul::before {
+          grid-column: 2;
+        }
+        ul li:nth-child(odd) {
+          grid-column: 1;
+        }
+        ul li:nth-child(even) {
+          grid-column: 3;
+        }
+
+        /* start second card */
+        ul li:nth-child(2) {
+          grid-row: 2/4;
+        }
+
+        ul li:nth-child(odd) .date::before {
+          clip-path: polygon(0 0, 100% 0, 100% 100%);
+          left: 0;
+        }
+
+        ul li:nth-child(odd) .date::after {
+          transform: translate(-50%, -50%);
+          left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+        }
+        ul li:nth-child(odd) .date {
+          border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+        }
+      }
+
+      /* Donaciones */
+      #donations .donation-row {
+        display: flex;
+        justify-content: space-between; /* Alinea los elementos entre sí */
+        align-items: center;
+        gap: 10px; /* Espacio entre icono y dirección */
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        color: #333;
+      }
+
+      #donations .donation-row span {
+        flex: 1; /* Permite que la dirección ocupe todo el espacio disponible */
+        text-align: left; /* Alinea el texto a la izquierda */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; /* Evita que el texto se desborde */
+      }
+
+      #donations .donation-row button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px; /* Espacio entre la dirección y el botón */
+      }
+
+      #donations .donation-row button img {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Redes sociales */
+      .social-box a {
+        margin: 0 10px;
+        text-decoration: none;
+        font-size: 1.2em;
+        color: #333;
+      }
+
+      .social-box a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.8em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <img src="assets/images/4.3hor.png" alt="Logo 3Toe" class="logo" />
+    </header>
+
+    <!-- Hero Section -->
+    <div id="hero" class="hero">
+      <img src="assets/images/pie2.JPG" alt="3Toe Logo" />
+      <div class="contract-box">
+        <span id="contract-address"
+          >AvToh2Mvu12DMPTd8zn4BjmERHq5AqJhuQNhjCDApump</span
+        >
+        <button onclick="copyToClipboard('contract-address')">
+          <img src="assets/svg/png/006-copy.png" alt="Copiar" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Historia -->
+    <div class="section">
+      <h2>About 3toe</h2>
+      <p>
+        Hey, thanks for being reading this, you are discovering 3toe, the first
+        resilent humor memecoin.
+      </p>
+      <p>
+        It all began in 2021 when I was riding my motorcycle back home and had
+        an unfortunate collision with a car. My left foot was crushed by the car
+        that hit me, breaking all five toes on my left foot. After a few weeks
+        and two surgeries, I was finally able to return home with two fewer
+        toes, to continue my recovery. After several physical therapy sessions
+        and months of effort and patience, I was able to walk normally again.
+      </p>
+      <p>
+        My mission with 3toe is to bring people together through laughter while
+        supporting each other as a community, raising awareness about our
+        insecurities.
+      </p>
+      <p>
+        Whether you’re here for the laughs, the community, the generational
+        wealth or the deeper message, i welcome you to join the 3toe family.
+        Together, let’s celebrate the lighthearted side of life’s challenges.
+      </p>
+    </div>
+
+    <!-- Roadmap -->
+    <h1>Road Map</h1>
+    <ul>
+      <li style="--accent-color: #333">
+        <div class="date">1M Marketcap</div>
+        <div class="title">Stream</div>
+        <div class="descr">24 hour stream with me on tiktok or twitch :)</div>
+      </li>
+      <li style="--accent-color: #333">
+        <div class="date">10M Marketcap</div>
+        <div class="title">NFT</div>
+        <div class="descr">
+          Small and exclusive collection of 3toe's NFT to be part of the
+          community
+        </div>
+      </li>
+      <li style="--accent-color: #333">
+        <div class="date">100M Marketcap</div>
+        <div class="title">Face Reveal</div>
+        <div class="descr">Stream telling more about me and my history</div>
+      </li>
+    </ul>
+    <div class="credits"></div>
+
+    <!-- Donaciones -->
+    <div id="donations" class="section">
+      <h2>Support me</h2>
+      <p>
+        I am raising money for the surgery to straighten my third toe and
+        prepare my fingers for prosthetics. If you'd like to contribute, I would
+        greatly appreciate it.
+      </p>
+      <div class="donation-row">
+        <img
+          width="32px"
+          height="32px"
+          src="assets/svg/png/004-bitcoin.png"
+          alt="bitcoin"
+        />
+        <span id="btc-address">bc1q59j0tvkydky2ryl626hexudzlzzhkhautvxfdh</span>
+        <button onclick="copyToClipboard('btc-address')">
+          <img src="assets/svg/png/006-copy.png" alt="Copiar" />
+        </button>
+      </div>
+      <div class="donation-row">
+        <img
+          width="32px"
+          height="32px"
+          src="assets/svg/png/007-ethereum.png"
+          alt="ethereum"
+        />
+        <span id="eth-address">0x04E55EDE4907A1B0b603510394D313377c871Ec4</span>
+        <button onclick="copyToClipboard('eth-address')">
+          <img src="assets/svg/png/006-copy.png" alt="Copiar" />
+        </button>
+      </div>
+
+      <div class="donation-row">
+        <img
+          width="32px"
+          height="32px"
+          src="assets/svg/png/002-bnb.png"
+          alt="bnb"
+        />
+        <span id="bep20-address"
+          >0x04E55EDE4907A1B0b603510394D313377c871Ec4</span
+        >
+        <button onclick="copyToClipboard('bep20-address')">
+          <img src="assets/svg/png/006-copy.png" alt="Copiar" />
+        </button>
+      </div>
+      <div class="donation-row">
+        <img
+          width="32px"
+          height="32px"
+          src="assets/svg/png/008-solana.png"
+          alt="solana"
+        />
+        <span id="sol-address"
+          >AtFaXeX6EkVewFnNLh55Szfy7SGgmj4KZd3S4sJpBf7i</span
+        >
+        <button onclick="copyToClipboard('sol-address')">
+          <img src="assets/svg/png/006-copy.png" alt="Copiar" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Redes sociales -->
+    <div id="socials" class="social-box">
+      <a href="https://tiktok.com" target="_blank"
+        ><img width="32px" height="32px" src="assets/svg/png/010-tiktok.png"
+      /></a>
+      <a href="https://instagram.com" target="_blank"
+        ><a href="https://tiktok.com" target="_blank"
+          ><img
+            width="32px"
+            height="32px"
+            src="assets/svg/png/001-instagram.png" /></a
+      ></a>
+      <!-- <a href="https://jup.ag" target="_blank"
+        ><a href="https://tiktok.com" target="_blank"
+          ><img
+            width="32px"
+            height="32px"
+            src="assets/svg/png/010-raydium.png" /></a
+      ></a> -->
+      <a href="https://twitter.com" target="_blank"
+        ><a href="https://tiktok.com" target="_blank"
+          ><img
+            width="32px"
+            height="32px"
+            src="assets/svg/png/009-twitter.png" /></a
+      ></a>
+      <a href="https://telegram.org" target="_blank"
+        ><a href="https://tiktok.com" target="_blank"
+          ><img
+            width="32px"
+            height="32px"
+            src="assets/svg/png/005-telegram.png" /></a
+      ></a>
+    </div>
+
+    <!-- Footer -->
+    <footer>© 2024 3Toe. Todos los derechos reservados.</footer>
+  </body>
+</html>
