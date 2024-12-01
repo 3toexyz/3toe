@@ -123,16 +123,6 @@
         width: min(60rem, 90%);
         margin-inline: auto;
       }
-
-      /* line */
-      /* ul::before {
-        content: "";
-        grid-column: 1;
-        grid-row: 1 / span 20;
-        background: rgb(0, 0, 0);
-        border-radius: calc(var(--line-w) / 2);
-      } */
-
       /* columns*/
 
       /* row gaps */
@@ -323,10 +313,48 @@
         font-size: 0.8em;
       }
 
+      @keyframes vibrate {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(-0.5px, 0.5px) rotate(-0.5deg);
+        }
+        50% {
+          transform: translate(0.5px, -0.5px) rotate(0.5deg);
+        }
+        75% {
+          transform: translate(-0.5px, -0.5px) rotate(-0.5deg);
+        }
+        100% {
+          transform: translate(0.5px, 0.5px) rotate(0.5deg);
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          filter: brightness(1); /* Estado original */
+        }
+        50% {
+          filter: brightness(0.3); /* Más oscuro */
+        }
+      }
+
+      .blinking-vibrating-svg {
+        display: inline-block;
+        animation: vibrate 0.8s infinite, blink 1s infinite; /* Combina ambas animaciones */
+      }
+
       @media (max-width: 550px) {
         .contract-box {
           font-size: 0.7rem;
+          padding: 0.7rem;
         }
+        .cabutton {
+          display: none;
+        }
+
         #donations .donation-row {
           font-size: 1.2rem;
         }
@@ -346,7 +374,7 @@
         <span id="contract-address"
           >AvToh2Mvu12DMPTd8zn4BjmERHq5AqJhuQNhjCDApump</span
         >
-        <button onclick="copyToClipboard('contract-address')">
+        <button class="cabutton" onclick="copyToClipboard('contract-address')">
           <img src="assets/svg/png/006-copy.png" class="capng" alt="Copiar" />
         </button>
       </div>
@@ -478,13 +506,13 @@
             height="32px"
             src="assets/svg/png/001-instagram.png" /></a
       ></a>
-      <!-- <a href="https://jup.ag" target="_blank"
+      <a href="https://jup.ag" target="_blank"
         ><a href="https://tiktok.com" target="_blank"
           ><img
             width="32px"
             height="32px"
             src="assets/svg/png/010-raydium.png" /></a
-      ></a> -->
+      ></a>
       <a href="https://twitter.com" target="_blank"
         ><a href="https://tiktok.com" target="_blank"
           ><img
@@ -498,6 +526,16 @@
             width="32px"
             height="32px"
             src="assets/svg/png/005-telegram.png" /></a
+      ></a>
+
+      <a href="https://twitch.com" target="_blank"
+        ><a href="https://twitch.com" target="_blank">
+          <img
+            width="32px"
+            height="32px"
+            src="assets/svg/png/twitch-tile.svg"
+            alt="Live Icon"
+            class="blinking-vibrating-svg" /></a
       ></a>
     </div>
 
